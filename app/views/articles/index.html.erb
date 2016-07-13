@@ -1,0 +1,14 @@
+<h1>Welcome to MattBlogs</h1>
+
+<ul id="articles">
+  <% @articles.each do |article| %>
+    <li>
+      <!-- the first part is the link text, the second is the route
+           helper, this will output an html line like this:
+           <a href="/articles/1">First Sample Article</a> -->
+      <%= link_to article.title,  article_path(article) %>
+    </li>
+  <% end %>
+
+  <%= link_to "Create New Article",  new_article_path, class: "new_article" %>
+</ul>
