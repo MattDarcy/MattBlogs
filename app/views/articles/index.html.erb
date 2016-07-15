@@ -1,4 +1,5 @@
-<h1>Welcome to MattBlogs</h1>
+<h1>MattBlogs</h1>
+<h2><i>"The last blogger you'll ever use"</i></h2>
 
 <ul id="articles">
   <% @articles.each do |article| %>
@@ -10,5 +11,5 @@
     </li>
   <% end %>
 
-  <%= link_to "Create New Article",  new_article_path, class: "new_article" %>
+  <%= link_to "New Article",  new_article_path, class: "new_article" %>
 </ul>
