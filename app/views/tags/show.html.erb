@@ -1,0 +1,15 @@
+<h1>#<%= @tag.name %></h1>
+
+<%= link_to "<< Back to Tags", tags_path %>
+
+<ul>
+  <% if @tag.articles.count == 0 %>
+    <h2> No articles with #<%= @tag.name %> yet!</h2>
+  <% else %>
+    <h2>Below is a list of blog entries with the tag #<%= @tag.name %></h2>
+    <% @tag.articles.each do |article| %>
+      <li><%= link_to article.title, article_path(article) %></li>
+      <% end %>
+  <% end %>
+</ul>
+<p>

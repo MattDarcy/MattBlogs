@@ -1,15 +1,16 @@
-<h1>MattBlogs</h1>
-<h2><i>"The last blogger you'll ever use"</i></h2>
+<h1><i>"The last blogger you'll ever use"</i></h1>
 
 <ul id="articles">
-  <% @articles.each do |article| %>
-    <li>
-      <!-- the first part is the link text, the second is the route
-           helper, this will output an html line like this:
-           <a href="/articles/1">First Sample Article</a> -->
-      <%= link_to article.title,  article_path(article) %>
-    </li>
+  <% if @articles.count == 0 %>
+    <h2>You should write an article!</h2>
+  <% else %>
+    <% @articles.each do |article| %>
+      <li>
+        <%= link_to article.title,  article_path(article) %>
+      </li>
+    <% end %>
   <% end %>
 
+  <%= link_to "#Tags", tags_path%>
   <%= link_to "New Article",  new_article_path, class: "new_article" %>
 </ul>

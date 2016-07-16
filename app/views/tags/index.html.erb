@@ -1,0 +1,16 @@
+<h1>#Tags</h1>
+
+<%= link_to "<< Back to Articles", articles_path %>
+
+<ul id="tags">
+  <% if @tags.count == 0 %>
+    <h2>No tags yet!</h2>
+  <% else %>
+    <% @tags.each do |tag| %>
+      <li>
+        <%= link_to tag.name, tag_path(tag) %>
+        <%= link_to "delete", tag_path(tag), method: :delete, data: { confirm: "Really delete ##{tag.name}?" } %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
