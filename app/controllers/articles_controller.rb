@@ -1,5 +1,17 @@
 class ArticlesController < ApplicationController
   before_filter :require_login, except: [:show, :index]
+  before_filter :valid_author?, only: [:edit, :destroy]
+
+  def valid_author?
+    @article = Article.find(params[:id])
+    unless @article.author_id == current_user.id
+      # I would personally redirect_to "back" but require_login
+      # method from sorcery redirects to the request.url which happens
+      # to dump back to root_path in this case
+      redirect_to root_path
+      return false
+    end
+  end
 
   include ArticlesHelper
 
@@ -20,6 +32,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @article.author_id = current_user.id
     @article.save
 
     flash.notice = "Article '#{@article.title}' created!"
